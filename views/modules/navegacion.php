@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=registro">Registro</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?action=mostrar_usuarios">Mostrar Usuarios</a>
+        </li>
       </ul>
     </div>
   </div>
