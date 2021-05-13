@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="container pb-5">
         <div class="row">
             <div class="col pt-5">
@@ -75,15 +74,15 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="contraseña" class="col-sm-2 col-form-label">Contraseña</label>
+                                <label for="contrasena" class="col-sm-2 col-form-label">Contraseña</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="contraseña" placeholder="*****" required>
+                                    <input type="password" class="form-control" name="contrasena" placeholder="*****" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="confirmacion_contraseña" class="col-sm-2 col-form-label">Confirmar contraseña</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="confirmacion_contraseña" required>
+                                    <input type="password" class="form-control" name="confirmacion_contrasena" required>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -99,18 +98,3 @@
 </body>
 
 </html>
-
-<?php
-
-$registrar = new crudController();
-$registrar->altaUsuarioController();
-
-if (isset($GET["action"])) {
-
-    if ($GET["action"] == "ok") {
-
-        echo "¡Registro exitoso!";
-    }
-}
-
-?>

@@ -1,3 +1,5 @@
+<div class="container">
+<div class="table-responsive">
 <table class="table table-striped">
   <thead>
     <tr>
@@ -12,8 +14,6 @@
       <th scope="col">EMAIL</th>
       <th scope="col">USUARIO</th>
       <th scope="col">CONTRASEÑA</th>
-      <th scope="col">EDITAR</th>
-      <th scope="col">ELIMINAR</th>
     </tr>
   </thead>
   <tbody>
@@ -29,10 +29,12 @@
         <td><?= $value['telefono'] ?></td>
         <td><?= $value['email'] ?></td>
         <td><?= $value['usuario_sesion'] ?></td>
-        <td><?= $value['contraseña'] ?></td>
+        <td><?= $value['contrasena'] ?></td>
         <td>
         </td>
       </tr>
     <?php } ?>
   </tbody>
 </table>
+</div>
+</div>

@@ -18,6 +18,7 @@ require_once("models/user.php");
   <?php
   include("views/modules/navegacion.php")
   ?>
+
   <div container>
     <?php
     $action = isset($_GET["action"]) ? $_GET["action"] : '/';
@@ -31,12 +32,19 @@ require_once("models/user.php");
       case 'mostrar_usuarios':
         UserController::get_all();
         break;
+      case 'actualizar_usuario':
+        UserController::edit();
+        UserController::update();
+        break;
       default:
+        $show = new userController();
+        $show -> get_all();
         break;
     }
     ?>
-
   </div>
-</body>
 
+<script src="views/js/jquery-3.6.0.min.js"></script>
+<script src="views/js/bootstrap.min.js"></script>
+</body>
 </html>
