@@ -14,6 +14,8 @@
       <th scope="col">EMAIL</th>
       <th scope="col">USUARIO</th>
       <th scope="col">CONTRASEÑA</th>
+      <th scope="col">EDITAR</th>
+      <th scope="col">ELIMINAR</th>
     </tr>
   </thead>
   <tbody>
@@ -30,8 +32,8 @@
         <td><?= $value['email'] ?></td>
         <td><?= $value['usuario_sesion'] ?></td>
         <td><?= $value['contrasena'] ?></td>
-        <td>
-        </td>
+        <td><a class="btn btn-warning" href="?action=editar_usuario&id=<?= $value["id_usuario"]?>" role="button">EDITAR</a></td>
+        <td><a class="btn btn-danger" href="?action=eliminar_usuario&id=<?= $value["id_usuario"]?>" role="button">ELIMINAR</a></td>
       </tr>
     <?php } ?>
   </tbody>

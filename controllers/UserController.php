@@ -34,14 +34,15 @@ class UserController
     include "views/modules/mostrarUsuario.php";
   }
 
-  static function edit()
+  static function edit($id)
   {
+    $usuario = User::getById($id);
     include "views/modules/actualizarUsuario.php";
   }
 
-  static function update()
+  static function update($id)
   {
-    if (isset($_GET ['id_usuario'])) {
+    if (isset($id)) {
       $datos = array(
         "tipo_usuario" => $_POST['tipo_usuario'],
         "genero" => $_POST['genero'],
@@ -54,11 +55,31 @@ class UserController
         "usuario_sesion" => $_POST['usuario_sesion'],
         "contrasena" => $_POST['contrasena'],
         "confirmacion_contrasena" => $_POST['confirmacion_contrasena']
-      );
-      $respuesta = User::update($datos);
-      echo $respuesta;
+      ); 
+
+      $respuesta = User::update($id, $datos);
+      if($respuesta == true){
+        echo '<script>alert("Usuario actualizado con éxito");</script> ';
+        echo '<script>window.location="index.php?action=mostrar_usuarios"</script>';  
+      }else{
+        $usuario = $_POST;
+        include "views/modules/actualizarUsuario.php";
+      }
     }
 
   }
+
+  static function delete($id)
+	{
+		if (isset($id))
+		{
+			$respuesta=User::delete($id); 
+      echo '<script>alert("Usuario eliminado con éxito");</script> ';
+      echo '<script>window.location="index.php?action=mostrar_usuarios"</script>';
+		}else{
+      echo '<script>window.location="index.php?action=mostrar_usuarios"</script>';
+    }
+
+	}
 
 }

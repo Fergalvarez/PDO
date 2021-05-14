@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 require_once("conexion.php");
 
 class User extends Conexion
@@ -36,17 +38,18 @@ class User extends Conexion
         return $smtp->fetchAll();
     }
 
-    public static function edit()
+    public static function getById($id)
     {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE id_usuario='id_usuario'");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE id_usuario='".$id."'");
         $stmt->execute();
-        return $smtp->fetchAll();
+        return $stmt->fetch();
     }
 
-    public static function update($datos)
+    public static function update($id, $datos)
     {
         try {
-            $stmt = Conexion::conectar()->prepare("UPDATE usuario SET `id_rol_usuario` = :rol, `id_genero_usuario` = :genero, `nombre` = :nombre, `apellido_paterno` = :apellidop, `apellido_materno` = :apellidom, `fecha_nacimiento` = :nacimiento, `telefono` = :telefono, `email` = :email, `usuario_sesion` = :usuario, `contrasena` = :password, `confirmacion` = :confirmacion");
+            $stmt = Conexion::conectar()->prepare("UPDATE usuario SET id_rol_usuario = :rol, id_genero_usuario = :genero, nombre = :nombre, apellido_paterno = :apellidop, apellido_materno = :apellidom, fecha_nacimiento = :nacimiento, telefono = :telefono, email = :email, usuario_sesion = :usuario, contrasena = :password, confirmacion = :confirmacion where id_usuario = '".$id."'");
+            $stmt->bindParam(":id", $datos["id_usuario"], PDO::PARAM_STR);
             $stmt->bindParam(":rol", $datos["tipo_usuario"], PDO::PARAM_STR);
             $stmt->bindParam(":genero", $datos["genero"], PDO::PARAM_STR);
             $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
@@ -58,12 +61,37 @@ class User extends Conexion
             $stmt->bindParam(":usuario", $datos["usuario_sesion"], PDO::PARAM_STR);
             $stmt->bindParam(":password", $datos["contrasena"], PDO::PARAM_STR);
             $stmt->bindParam(":confirmacion", $datos["confirmacion_contrasena"], PDO::PARAM_STR);
-            $stmt->execute();
-            echo ' <script>alert("Usuario actualizado con éxito");</script> ';
-            echo '<script>window.location="index.php?action=actualizar_usuario"</script>';
+            $stmt->execute();          
+            
         } catch (PDOException $e) {
             return $e->getMessage();
         }
         return $stmt;
-    }    
+    }   
+    
+    public static function gender($genero)
+    {
+        try {
+            ($genero>0)?$adicional="id_genero_usuario= ".$genero:$adicional="id_genero_usuario>0";
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM genero_usuario WHERE ".$adicional);
+            $stmt->execute();
+            if ($genero>0){
+                return $stmt->fetch();
+            }
+            if ($genero==0){
+                return $stmt->fetchAll();
+            }  
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    
+    } 
+
+    public static function delete($id)
+	{
+		$stmt = Conexion::conectar()->prepare("DELETE FROM usuario WHERE id_usuario='".$id."'");
+		$stmt->execute();
+        return $stmt;
+	}
 }

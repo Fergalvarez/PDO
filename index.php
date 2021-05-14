@@ -32,9 +32,17 @@ require_once("models/user.php");
       case 'mostrar_usuarios':
         UserController::get_all();
         break;
+      case 'editar_usuario':
+        $id = isset($_GET['id']) ? $_GET['id'] : ' ';
+        Usercontroller::edit($id);
+        break;
       case 'actualizar_usuario':
-        UserController::edit();
-        UserController::update();
+        $id = isset($_GET['id']) ? $_GET['id'] : ' ';
+        Usercontroller::update($id);
+        break;
+      case 'eliminar_usuario':
+        $id = isset($_GET['id']) ? $_GET['id'] : ' ';
+        Usercontroller::delete($id);
         break;
       default:
         $show = new userController();

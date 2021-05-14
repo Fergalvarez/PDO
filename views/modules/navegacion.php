@@ -16,7 +16,7 @@
           <a class="nav-link" href="index.php?action=mostrar_usuarios">Mostrar</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=actualizar_usuario">Actualizar</a>
+          <a class="nav-link" href="index.php?action=editar_usuario&id=" <?php.$id["id_usuario"]?>>Actualizar</a>
         </li>
       </ul>
     </div>
