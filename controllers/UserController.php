@@ -59,6 +59,7 @@ class UserController
 
       $respuesta = User::update($id, $datos);
       if($respuesta == true){
+        var_dump($respuesta);
         echo '<script>alert("Usuario actualizado con éxito");</script> ';
         echo '<script>window.location="index.php?action=mostrar_usuarios"</script>';  
       }else{
