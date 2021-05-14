@@ -10,13 +10,10 @@
           <a class="nav-link" href="index.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=registro">Registro</a>
-        </li>
-       <li class="nav-item">
-          <a class="nav-link" href="index.php?action=mostrar_usuarios">Mostrar</a>
+          <a class="nav-link" href="index.php?action=registrar_usuario">Registrar usuario</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=editar_usuario&id=" <?php.$id["id_usuario"]?>>Actualizar</a>
+          <a class="nav-link" href="index.php?action=mostrar_usuarios">Mostrar usuarios</a>
         </li>
       </ul>
     </div>

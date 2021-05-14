@@ -1,6 +1,7 @@
 <?php
 require_once("controllers/UserController.php");
 require_once("models/user.php");
+require_once("models/gender.php");
 ?>
 
 <!DOCTYPE html>
@@ -23,36 +24,38 @@ require_once("models/user.php");
     <?php
     $action = isset($_GET["action"]) ? $_GET["action"] : '/';
     switch ($action) {
-      case 'registro':
+      case 'registrar_usuario':
         UserController::new();
         break;
-      case 'registrar_usuario':
+      case 'crear_usuario':
         UserController::create();
         break;
       case 'mostrar_usuarios':
         UserController::get_all();
         break;
       case 'editar_usuario':
-        $id = isset($_GET['id']) ? $_GET['id'] : ' ';
-        Usercontroller::edit($id);
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        UserController::edit($id);
         break;
       case 'actualizar_usuario':
-        $id = isset($_GET['id']) ? $_GET['id'] : ' ';
-        Usercontroller::update($id);
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        echo $id;
+        UserController::update($id);
         break;
       case 'eliminar_usuario':
-        $id = isset($_GET['id']) ? $_GET['id'] : ' ';
-        Usercontroller::delete($id);
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        UserController::delete($id);
         break;
       default:
-        $show = new userController();
-        $show -> get_all();
+        $show = new UserController();
+        $show->get_all();
         break;
     }
     ?>
   </div>
 
-<script src="views/js/jquery-3.6.0.min.js"></script>
-<script src="views/js/bootstrap.min.js"></script>
+  <script src="views/js/jquery-3.6.0.min.js"></script>
+  <script src="views/js/bootstrap.min.js"></script>
 </body>
+
 </html>

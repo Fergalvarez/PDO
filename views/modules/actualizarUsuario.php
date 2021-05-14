@@ -16,98 +16,75 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center">Actualizar usuario</h5>
-                        <form action="?action=actualizar_usuario&id=<?php echo $id?>" method="post">
-                        <?php
-                          $gender = User::gender($usuario['id_genero_usuario']);
-                          
-                          $genero = User::gender(0);
-                            echo "<pre>";
-                        print_r($genero);
-                        echo "</pre>";
-                        echo $gender['id_genero_usuario'] ."--". $gender['genero'];
-                        echo "<hr/>";
-                        
-                            echo "<pre>";
-                        print_r($usuario);
-                        echo "</pre>";
-                        ?>
-                        <div class="mb-3 row">
-                                <label for="id_usuario" class="col-sm-2 col-form-label">ID Usuario</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>" required>
-                                </div>
-                            </div>
-                            <div class="form-group" hidden>
-                                <label for="userType" class="col-sm-2 col-form-label">Usuario</label>
-                                <input type="radio" name="tipo_usuario" value="<?php echo $usuario['id_rol_usuario']; ?>" checked>Cliente
-                            </div>
+                        <form action="?action=actualizar_usuario&id=<?= $id ?>" method="post">
+                            <input type="hidden" name="tipo_usuario" value="<?php echo $usuario['id_rol_usuario']; ?>">
+
                             <div class="mb-3 row">
                                 <label for="genero" class="col-sm-2 col-form-label">Género</label>
                                 <div class="col-sm-10">
-                                
-                                    <select class="form-select" aria-label="Default select example" name="genero">
-                                        <option value="<?php echo $gender['id_genero_usuario'] ?>"><?php echo $gender['genero'] ?></option>
-                                        <?php 
 
-                                         foreach($genero as $value){ 
-                                                echo '<option value="'.$value['id_genero_usuario'].'">'.$value['genero'].'</option>';
-                                         } 
-                                         ?>
+                                    <select class="form-select" aria-label="Default select example" name="genero">
+                                        <option>Selecciona</option>
+                                        <?php foreach ($generos as $value) { ?>
+                                            <option value="<?= $value['id_genero_usuario'] ?>" <?= $value['id_genero_usuario'] == $usuario['id_genero_usuario'] ? 'selected' : '' ?>>
+                                                <?= $value['genero'] ?>
+                                            </option>;
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="nombre" class="col-sm-2 col-form-label">Nombre completo</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nombre" value="<?php echo $usuario['nombre']; ?>" required>
+                                    <input type="text" class="form-control" name="nombre" value="<?= $usuario['nombre']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="apellido_paterno" class="col-sm-2 col-form-label">Apellido paterno</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="apellido_paterno" value="<?php echo $usuario['apellido_paterno']; ?>" required>
+                                    <input type="text" class="form-control" name="apellido_paterno" value="<?= $usuario['apellido_paterno']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="apellido_materno" class="col-sm-2 col-form-label">Apellido materno</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="apellido_materno" value="<?php echo $usuario['apellido_materno']; ?>" required>
+                                    <input type="text" class="form-control" name="apellido_materno" value="<?= $usuario['apellido_materno']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="fecha_nacimiento" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="fecha_nacimiento" value="<?php echo $usuario['fecha_nacimiento']; ?>" required>
+                                    <input type="date" class="form-control" name="fecha_nacimiento" value="<?= $usuario['fecha_nacimiento']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="telefono" class="col-sm-2 col-form-label">Teléfono</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="telefono" value="<?php echo $usuario['telefono']; ?>" required>
+                                    <input type="text" class="form-control" name="telefono" value="<?= $usuario['telefono']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="email" class="col-sm-2 col-form-label">Correo electrónico</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" name="email" value="<?php echo $usuario['email']; ?>" required>
+                                    <input type="email" class="form-control" name="email" value="<?= $usuario['email']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="usuario_sesion" class="col-sm-2 col-form-label">Usuario de sesión</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="usuario_sesion" value="<?php echo $usuario['usuario_sesion']; ?>" required>
+                                    <input type="text" class="form-control" name="usuario_sesion" value="<?= $usuario['usuario_sesion']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="contrasena" class="col-sm-2 col-form-label">Contraseña</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="contrasena" value="<?php echo $usuario['contrasena']; ?>" required>
+                                    <input type="password" class="form-control" name="contrasena" value="<?= $usuario['contrasena']; ?>" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="confirmacion_contraseña" class="col-sm-2 col-form-label">Confirmar contraseña</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="confirmacion_contrasena" value="<?php echo $usuario['confirmacion']; ?>" required>
+                                    <input type="password" class="form-control" name="confirmacion_contrasena" value="<?= $usuario['confirmacion']; ?>" required>
                                 </div>
                             </div>
                             <div class="text-center">

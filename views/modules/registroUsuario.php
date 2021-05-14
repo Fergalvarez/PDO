@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center">Registro de usuario</h5>
-                        <form action="?action=registrar_usuario" method="post">
+                        <form action="?action=crear_usuario" method="post">
                             <div class="form-group" hidden>
                                 <label for="userType" class="col-sm-2 col-form-label">Usuario</label>
                                 <input type="radio" name="tipo_usuario" value="1" checked>Cliente
@@ -25,9 +25,12 @@
                                 <label for="genero" class="col-sm-2 col-form-label">Género</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="genero">
-                                        <option selected>--Selecciona--</option>
-                                        <option value="0">Femenino</option>
-                                        <option value="1">Masculino</option>
+                                        <option>Selecciona</option>
+                                        <?php foreach ($generos as $value) { ?>
+                                            <option value="<?= $value['id_genero_usuario'] ?>" <?= $value['id_genero_usuario'] == $usuario['id_genero_usuario'] ? 'selected' : '' ?>>
+                                                <?= $value['genero'] ?>
+                                            </option>;
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
