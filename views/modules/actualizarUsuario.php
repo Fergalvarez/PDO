@@ -17,8 +17,19 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Actualizar usuario</h5>
                         <form action="?action=actualizar_usuario&id=<?= $id ?>" method="post">
-                            <input type="hidden" name="tipo_usuario" value="<?php echo $usuario['id_rol_usuario']; ?>">
-
+                            <div class="mb-3 row">
+                                <label for="genero" class="col-sm-2 col-form-label">Tipo de usuario</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example" name="tipo_usuario">
+                                        <option>Selecciona</option>
+                                        <?php foreach ($tipo_usuarios as $value) { ?>
+                                            <option value="<?= $value['id'] ?>" <?= $value['id'] == $usuario['id_rol_usuario'] ? 'selected' : '' ?>>
+                                                <?= $value['tipo_usuario'] ?>
+                                            </option>;
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="mb-3 row">
                                 <label for="genero" class="col-sm-2 col-form-label">Género</label>
                                 <div class="col-sm-10">

@@ -43,11 +43,19 @@ class UserController
   {
     $usuario = User::getById($id);
     $generos = Gender::get_all();
+    $tipo_usuarios = [
+      ['id' => 1, 'tipo_usuario' => 'Cliente'],
+      ['id' => 2, 'tipo_usuario' => 'Administrador']
+    ];
     include "views/modules/actualizarUsuario.php";
   }
 
   static function update($id)
   {
+    $tipo_usuarios = [
+      ['id' => 1, 'tipo_usuario' => 'Cliente'],
+      ['id' => 2, 'tipo_usuario' => 'Administrador']
+    ];
     $generos = Gender::get_all();
     if (isset($id)) {
       $datos = array(
@@ -85,36 +93,26 @@ class UserController
     }
   }
 
-  static function newlogin()
+  static function login()
   {
     include "views/modules/login.php";
   }
 
-  static function login($id) {
-      $sesion = array(
-      "email" => $_POST['email'],
-      "usuario_sesion" => $_POST['usuario_sesion'],
-      "contrasena" => $_POST['contrasena']);
+  static function sign_in()
+  {
+    $usuario = User::login($_POST['email'], $_POST['password']);
 
-      $autenticar = User::login($rol, $email, $user, $password);
+    if ($usuario != false) {
+      $_SESSION['usuario'] = $usuario;
+      echo '<script>window.location="index.php";</script>';
+    }
+    echo '<script>alert("SUS DATOS SON INCORRECTOS.");</script>';
+    echo '<script>window.location="index.php?action=login_usuario";</script>';
+  }
 
-      session_start();
-
-      $_SESSION['id_usuario']=$id;
-      $_SESSION['id_rol_usuario']=$rol;
-      $_SESSION['email']=$email;
-      $_SESSION['usuario_sesion']=$user;
-      $_SESSION['contrasena']=$password;
-
-      if ($_SESSION['id_rol_usuario']==1) {
-          echo'<script>window.location="administrador.php";</script>';
-      } else {
-          echo'<script>window.location="cliente.php";</script>';
-      } 
-		    echo'<script>alert("SUS DATOS SON INCORRECTOS.");</script>';
-		    echo'<script>window.location="administrador.php";</script>';
-  
-}
-
- 
+  static function log_out()
+  {
+    unset($_SESSION['usuario']);
+    echo '<script>window.location="index.php";</script>';
+  }
 }

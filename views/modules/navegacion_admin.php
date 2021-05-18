@@ -22,7 +22,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
-          <a class="nav-link" href="../index.php"><span>Salir</span></a>
+          <a class="nav-link" href="index.php?action=log_out"><span>Salir</span></a>
         </li>
       </ul>
     </div>

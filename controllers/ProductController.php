@@ -1,74 +1,65 @@
 <?php
 class ProductController
 {
-    static function new()
-    {
-        $categorias = Category::get_all();
-        $generos = Gender::get_all();
-        include "views/modules/registroProducto.php";
+  static function new()
+  {
+    $categorias = Category::get_all();
+    $generos = Gender::get_all();
+    include "views/modules/registroProducto.php";
+  }
+
+  static function create()
+  {
+    $target_file = self::uploadImage($_FILES['imagen']);
+    if (isset($_POST)) {
+      $datos = array(
+        "categoria" => $_POST['categoria'],
+        "genero" => $_POST['genero'],
+        "producto" => $_POST['producto'],
+        "color" => $_POST['color'],
+        "talla" => $_POST['talla'],
+        "cantidad" => $_POST['cantidad'],
+        "precio" => $_POST['precio'],
+        "imagen" => $target_file
+      );
+
+      $respuesta = Product::create($datos);
+      if ($respuesta) {
+        echo '<script>alert("Producto registrado con éxito");</script> ';
+      }
+      include "views/modules/registroProducto.php";
     }
+  }
 
-    static function create()
-    {
+  static function get_all()
+  {
+    $results = Product::get_all();
+    include "views/modules/mostrarProductos.php";
+  }
 
-      include "files/upload.php";
-        if (isset($_POST)) {          
-            $datos = array(
-                "categoria" => $_POST['categoria'],
-                "genero" => $_POST['genero'],
-                "producto" => $_POST['producto'],
-                "color" => $_POST['color'],
-                "talla" => $_POST['talla'],
-                "cantidad" => $_POST['cantidad'],
-                "precio" => $_POST['precio'],
-                "imagen" => $target_file
-        );
+  static function edit($id)
+  {
+    $producto = Product::getById($id);
+    $categorias = Category::get_all();
+    $generos = Gender::get_all();
+    include "views/modules/actualizarProducto.php";
+  }
 
-        echo ('<pre>');
-        print_r($target_file);
-        echo ('</pre>');
-        
-        var_dump($_POST);
-        var_dump($_FILES);
-            $respuesta = Product::create($datos);
-            if ($respuesta) {
-                echo '<script>alert("Producto registrado con éxito");</script> ';
-               
-              }
-              include "views/modules/registroProducto.php";
-            
-        }
-    }
-
-    static function get_all()
-    {
-        $results = Product::get_all();
-        include "views/modules/mostrarProductos.php";
-    }
-
-    static function edit($id)
-    {
-        $producto = Product::getById($id);
-        $categorias = Category::get_all();
-        $generos = Gender::get_all();
-        include "views/modules/actualizarProducto.php";
-    }
-
-    static function update($id)
-    {
+  static function update($id)
+  {
     $categorias = Category::get_all();
     $generos = Gender::get_all();
     if (isset($_POST)) {
-        $datos = array(
-            "categoria" => $_POST['categoria'],
-            "genero" => $_POST['genero'],
-            "producto" => $_POST['producto'],
-            "color" => $_POST['color'],
-            "talla" => $_POST['talla'],
-            "cantidad" => $_POST['cantidad'],
-            "precio" => $_POST['precio'],
-            "imagen" => $_POST['imagen'],
-    );
+      $datos = array(
+        "categoria" => $_POST['categoria'],
+        "genero" => $_POST['genero'],
+        "producto" => $_POST['producto'],
+        "color" => $_POST['color'],
+        "talla" => $_POST['talla'],
+        "cantidad" => $_POST['cantidad'],
+        "precio" => $_POST['precio'],
+        "imagen" => $_POST['imagen'],
+      );
       $respuesta = Product::update($id, $datos);
       if ($respuesta) {
         echo '<script>alert("Producto actualizado con éxito");</script> ';
@@ -89,5 +80,18 @@ class ProductController
       echo '<script>window.location="index.php?action=mostrar_productos"</script>';
     }
   }
+
+  static function uploadImage($imagen)
+  {
+    $target_dir = "public/products/";
+    $target_file = $target_dir . basename($imagen["name"]);
+    try {
+      if (!move_uploaded_file($imagen["tmp_name"], $target_file)) {
+        throw new Exception('Could not move file');
+      }
+      return $target_file;
+    } catch (Exception $e) {
+      die('File did not upload: ' . $e->getMessage());
+    }
+  }
 }
-?>

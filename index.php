@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("controllers/UserController.php");
 require_once("controllers/ProductController.php");
 require_once("controllers/OrderController.php");
@@ -23,8 +24,11 @@ require_once("models/pay.php");
 
 <body>
   <?php
-  session_start();
-  include("views/modules/navegacion.php")
+  if ($_SESSION['usuario']['id_rol_usuario'] == 1) {
+    include("views/modules/navegacion_admin.php");
+  } else {
+    include("views/modules/navegacion.php");
+  }
   ?>
 
   <div container>
@@ -54,11 +58,13 @@ require_once("models/pay.php");
         UserController::delete($id);
         break;
       case 'login_usuario':
-        UserController::newlogin();
+        UserController::login();
         break;
-      case 'sesion_usuario':
-        $id = isset($_GET['id']) ? $_GET['id'] : '';
-        UserController::login($id);
+      case 'iniciar_sesion':
+        UserController::sign_in();
+        break;
+      case 'log_out':
+        UserController::log_out();
         break;
       case 'registrar_producto':
         ProductController::new();
