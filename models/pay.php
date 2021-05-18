@@ -4,12 +4,12 @@ error_reporting(0);
 
 require_once("conexion.php");
 
-class Gender extends Conexion
+class Pay extends Conexion
 {
   public static function get_all()
   {
     try {
-      $smtp = Conexion::conectar()->prepare("SELECT * FROM genero_usuario");
+      $smtp = Conexion::conectar()->prepare("SELECT * FROM pago");
       $smtp->execute();
     } catch (PDOException $e) {
       echo $e->getMessage();

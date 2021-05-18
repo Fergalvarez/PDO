@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="container pb-5">
         <div class="row">
             <div class="col pt-5">
@@ -17,9 +18,15 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Registro de usuario</h5>
                         <form action="?action=crear_usuario" method="post">
-                            <div class="form-group" hidden>
-                                <label for="userType" class="col-sm-2 col-form-label">Usuario</label>
-                                <input type="radio" name="tipo_usuario" value="1" checked>Cliente
+                        <div class="mb-3 row">
+                                <label for="tipo_usuario" class="col-sm-2 col-form-label">Usuario</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example" name="tipo_usuario" required>
+                                        <option value="">Selecciona</option>
+                                        <option value="1">Cliente</option>
+                                        <option value="2">Administrador</option>
+                                    </select>
+                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="genero" class="col-sm-2 col-form-label">Género</label>

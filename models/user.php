@@ -95,4 +95,16 @@ class User extends Conexion
         }
         return $stmt;
     }
+
+    public static function login($id, $rol, $email, $user, $password)
+    {
+        try {
+            $smtp = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE id_usuario='" . $id . "' OR id_rol_usuario='" . $rol . "' OR email='" . $email . "' OR usuario_sesion='" . $user . "' AND contrasena='" . $password . "'");
+            $smtp->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+        return $smtp->fetchAll();
+    }
 }

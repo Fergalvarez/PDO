@@ -26,7 +26,7 @@ class UserController
       );
       $respuesta = User::create($datos);
       if ($respuesta) {
-        echo ' <script>alert("Usuario registrado con éxito");</script> ';
+        echo '<script>alert("Usuario registrado con éxito");</script> ';
         echo '<script>window.location="index.php?action=registro"</script>';
       }
       include "views/modules/registroUsuario.php";
@@ -84,4 +84,37 @@ class UserController
       echo '<script>window.location="index.php?action=mostrar_usuarios"</script>';
     }
   }
+
+  static function newlogin()
+  {
+    include "views/modules/login.php";
+  }
+
+  static function login($id) {
+      $sesion = array(
+      "email" => $_POST['email'],
+      "usuario_sesion" => $_POST['usuario_sesion'],
+      "contrasena" => $_POST['contrasena']);
+
+      $autenticar = User::login($rol, $email, $user, $password);
+
+      session_start();
+
+      $_SESSION['id_usuario']=$id;
+      $_SESSION['id_rol_usuario']=$rol;
+      $_SESSION['email']=$email;
+      $_SESSION['usuario_sesion']=$user;
+      $_SESSION['contrasena']=$password;
+
+      if ($_SESSION['id_rol_usuario']==1) {
+          echo'<script>window.location="administrador.php";</script>';
+      } else {
+          echo'<script>window.location="cliente.php";</script>';
+      } 
+		    echo'<script>alert("SUS DATOS SON INCORRECTOS.");</script>';
+		    echo'<script>window.location="administrador.php";</script>';
+  
+}
+
+ 
 }

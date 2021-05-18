@@ -1,7 +1,13 @@
 <?php
 require_once("controllers/UserController.php");
+require_once("controllers/ProductController.php");
+require_once("controllers/OrderController.php");
 require_once("models/user.php");
 require_once("models/gender.php");
+require_once("models/category.php");
+require_once("models/product.php");
+require_once("models/order.php");
+require_once("models/pay.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +23,7 @@ require_once("models/gender.php");
 
 <body>
   <?php
+  session_start();
   include("views/modules/navegacion.php")
   ?>
 
@@ -45,6 +52,57 @@ require_once("models/gender.php");
       case 'eliminar_usuario':
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         UserController::delete($id);
+        break;
+      case 'login_usuario':
+        UserController::newlogin();
+        break;
+      case 'sesion_usuario':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        UserController::login($id);
+        break;
+      case 'registrar_producto':
+        ProductController::new();
+        break;
+      case 'crear_producto':
+        ProductController::create();
+        break;
+      case 'mostrar_productos':
+        ProductController::get_all();
+        break;
+      case 'editar_producto':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        ProductController::edit($id);
+        break;
+      case 'actualizar_producto':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        echo $id;
+        ProductController::update($id);
+        break;
+      case 'eliminar_producto':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        ProductController::delete($id);
+        break;
+      case 'registrar_pedido':
+        OrderController::new();
+        break;
+      case 'crear_pedido':
+        OrderController::create();
+        break;
+      case 'mostrar_pedidos':
+        OrderController::get_all();
+        break;
+      case 'editar_pedido':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        OrderController::edit($id);
+        break;
+      case 'actualizar_pedido':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        echo $id;
+        OrderController::update($id);
+        break;
+      case 'eliminar_pedido':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        OrderController::delete($id);
         break;
       default:
         $show = new UserController();
