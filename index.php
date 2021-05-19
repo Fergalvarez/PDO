@@ -9,6 +9,7 @@ require_once("models/category.php");
 require_once("models/product.php");
 require_once("models/order.php");
 require_once("models/pay.php");
+require_once("models/rol.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,9 @@ require_once("models/pay.php");
   <?php
   if ($_SESSION['usuario']['id_rol_usuario'] == 1) {
     include("views/modules/navegacion_admin.php");
-  } else {
+  } else if ($_SESSION['usuario']['id_rol_usuario'] == 2) {
+    include("views/modules/navegacion_cliente.php");
+  } else{
     include("views/modules/navegacion.php");
   }
   ?>
@@ -110,9 +113,24 @@ require_once("models/pay.php");
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         OrderController::delete($id);
         break;
+      case 'mostrar_articulo1':
+        rutasController::articulo1();
+        break;
+      case 'mostrar_articulo2':
+        rutasController::articulo2();
+        break;
+      case 'mostrar_articulo3':
+        rutasController::articulo3();
+        break;
+      case 'mostrar_contacto':
+        rutasController::contacto();
+        break;
+      case 'mostrar_carrito':
+        rutasController::carrito();
+        break;
       default:
         $show = new UserController();
-        $show->get_all();
+        $show->cliente();
         break;
     }
     ?>

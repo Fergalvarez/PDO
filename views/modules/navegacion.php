@@ -10,26 +10,20 @@
           <a class="nav-link" href="index.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="blusas.php">Blusas</a>
+          <a class="nav-link" href="index.php?action=mostrar_articulo1">Blusas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="vestidos.php">Vestidos</a>
+          <a class="nav-link" href="index.php?action=mostrar_articulo2">Vestidos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="accesorios.php">Accesorios</a>
+          <a class="nav-link" href="index.php?action=mostrar_articulo3">Accesorios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contacto.php">Contacto</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?action=registrar_usuario">Registrar usuario</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?action=mostrar_usuarios">Mostrar usuarios</a>
+          <a class="nav-link" href="index.php?action=mostrar_contacto">Contacto</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a class="nav-link" href="carrito_compra.php"><span>Carrito</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="index.php?action=mostrar_carrito"><span>Carrito</span></a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?action=login_usuario"><span> Iniciar sesión</span></a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?action=registrar_usuario"><span>Registrarse</span></a></li>
       </ul>

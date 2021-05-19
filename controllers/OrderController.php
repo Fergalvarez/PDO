@@ -48,8 +48,6 @@ class OrderController
   static function update($id)
   {
     $pago = Pay::get_all();
-    $pais=Country::get_all();
-    $estado=State::get_all();
     if (isset($id)) {
       $datos = array(
         "usuario" => $_POST['id_usuario'],

@@ -3,7 +3,7 @@ class UserController
 {
 
   static function new()
-  {
+  { $rol=Rol::get_all();
     $generos = Gender::get_all();
     include "views/modules/registroUsuario.php";
   }
@@ -42,6 +42,7 @@ class UserController
   static function edit($id)
   {
     $usuario = User::getById($id);
+    $rol=Rol::get_all();
     $generos = Gender::get_all();
     $tipo_usuarios = [
       ['id' => 1, 'tipo_usuario' => 'Cliente'],
@@ -56,6 +57,7 @@ class UserController
       ['id' => 1, 'tipo_usuario' => 'Cliente'],
       ['id' => 2, 'tipo_usuario' => 'Administrador']
     ];
+    $rol=Rol::get_all();
     $generos = Gender::get_all();
     if (isset($id)) {
       $datos = array(
@@ -114,5 +116,10 @@ class UserController
   {
     unset($_SESSION['usuario']);
     echo '<script>window.location="index.php";</script>';
+  }
+
+  static function cliente()
+  {
+    include "views/modules/cliente.php";
   }
 }

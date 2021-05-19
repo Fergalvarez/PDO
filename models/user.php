@@ -84,6 +84,18 @@ class User extends Conexion
         return $stmt->fetch();
     }
 
+    public static function rol($id_rol_usuario)
+    {
+        try {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM rol_usuario WHERE id_rol_usuario=" . $id_rol_usuario . " limit 1");
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+        return $stmt->fetch();
+    }
+
     public static function delete($id)
     {
         try {

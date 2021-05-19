@@ -5,23 +5,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=mostrar_usuarios">Inicio</a>
+          <a class="nav-link" href="index.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=registrar_producto">Productos</a>
+          <a class="nav-link" href="index.php?action=mostrar_articulo1">Blusas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=mostrar_productos">Catalogo de productos</a>
+          <a class="nav-link" href="index.php?action=mostrar_articulo2">Vestidos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=registrar_pedido">Pedidos</a>
+          <a class="nav-link" href="index.php?action=mostrar_articulo3">Accesorios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?action=mostrar_pedidos">Catalogo de pedidos</a>
+          <a class="nav-link" href="index.php?action=mostrar_contacto">Contacto</a>
         </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a class="nav-link" href="index.php?action=mostrar_carrito"><span>Carrito</span></a></li>
+    </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=log_out"><span>Salir</span></a>

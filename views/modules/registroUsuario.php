@@ -22,9 +22,11 @@
                                 <label for="tipo_usuario" class="col-sm-2 col-form-label">Usuario</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="tipo_usuario" required>
-                                        <option value="">Selecciona</option>
-                                        <option value="1">Cliente</option>
-                                        <option value="2">Administrador</option>
+                                    <?php foreach ($rol as $value) { ?>
+                                            <option value="<?= $value['id_rol_usuario'] ?>" <?= $value['id_rol_usuario'] == $usuario['id_genero_usuario'] ? 'selected' : '' ?>>
+                                                <?= $value['rol'] ?>
+                                            </option>;
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>

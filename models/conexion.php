@@ -5,9 +5,9 @@ class Conexion
     public static function conectar()
     {
         $host = 'localhost';
-        $dbname = 'test';
+        $dbname = 'doricaeliza';
         $username = 'root';
-        $password = '31141907';
+        $password = '';
 
         try {
             $conexion = new PDO("mysql:host=" . $host . ";dbname=" . $dbname, $username, $password);
