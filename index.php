@@ -4,6 +4,7 @@ require_once("controllers/UserController.php");
 require_once("controllers/ProductController.php");
 require_once("controllers/OrderController.php");
 require_once("controllers/rutasController.php");
+require_once("controllers/ShoppingCarController.php");
 require_once("models/user.php");
 require_once("models/gender.php");
 require_once("models/category.php");
@@ -21,6 +22,9 @@ require_once("models/rol.php");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="views/css/bootstrap.min.css">
+  <script src="views/js/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="views/js/bootstrap.min.js"></script>
   <title>Document</title>
 </head>
 
@@ -30,7 +34,7 @@ require_once("models/rol.php");
     include("views/modules/navegacion_admin.php");
   } else if ($_SESSION['usuario']['id_rol_usuario'] == 2) {
     include("views/modules/navegacion_cliente.php");
-  } else{
+  } else {
     include("views/modules/navegacion.php");
   }
   ?>
@@ -132,7 +136,13 @@ require_once("models/rol.php");
         rutasController::contacto();
         break;
       case 'mostrar_carrito':
-        rutasController::carrito();
+        ShoppingCarController::show_shopping_car();
+        break;
+      case 'agregar_carrito':
+        ShoppingCarController::add_shopping_car();
+        break;
+      case 'eliminar_carrito':
+        ShoppingCarController::delete_shopping_car();
         break;
       default:
         ProductController::get_all_Cliente();
@@ -142,9 +152,6 @@ require_once("models/rol.php");
     }
     ?>
   </div>
-
-  <script src="views/js/jquery-3.6.0.min.js"></script>
-  <script src="views/js/bootstrap.min.js"></script>
 </body>
 
 </html>

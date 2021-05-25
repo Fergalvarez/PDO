@@ -84,7 +84,7 @@ class Product extends Conexion
         }
         return $stmt->fetch();
     }
-    
+
     public static function user_gender($id_genero_usuario)
     {
         try {
@@ -120,7 +120,4 @@ class Product extends Conexion
         }
         return $stmt->fetch();
     }
-    
 }
-
-?> 

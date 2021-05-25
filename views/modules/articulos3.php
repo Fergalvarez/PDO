@@ -24,9 +24,6 @@
         ?>
 
     </div>
-
-    <script src="views/js/jquery-3.6.0.min.js"></script>
-    <script src="views/js/bootstrap.min.js"></script>
 </body>
 
 <footer class="fixed-bottom pt-1">

@@ -23,13 +23,17 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a class="nav-link" href="index.php?action=mostrar_carrito"><span>Carrito</span></a></li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-success text-white" href="index.php?action=mostrar_carrito">
+            Carrito
+            <?php if (isset($_SESSION['shopping_car']) && count($_SESSION['shopping_car']) > 0) { ?>
+              <span class="badge badge-light"><?= count($_SESSION['shopping_car']) ?></span>
+            <?php } ?>
+          </a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="index.php?action=login_usuario"><span> Iniciar sesión</span></a></li>
         <li class="nav-item"><a class="nav-link" href="index.php?action=registrar_usuario"><span>Registrarse</span></a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
