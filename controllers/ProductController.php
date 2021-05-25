@@ -37,6 +37,24 @@ class ProductController
     include "views/modules/mostrarProductos.php";
   }
 
+  static function get_all_Cliente()
+  {
+    $results = Product::get_all();
+    include "views/modules/cliente.php";
+  }
+
+  static function getByIdCategoria($id)
+  {
+    $results = Product::getByIdCategoria($id);
+    include "views/modules/catologo_productos.php";
+  }
+
+  static function get_all_blouses()
+  {
+    $results = Product::get_all();
+    include "views/modules/cliente.php";
+  }
+
   static function edit($id)
   {
     $producto = Product::getById($id);

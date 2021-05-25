@@ -3,6 +3,7 @@ session_start();
 require_once("controllers/UserController.php");
 require_once("controllers/ProductController.php");
 require_once("controllers/OrderController.php");
+require_once("controllers/rutasController.php");
 require_once("models/user.php");
 require_once("models/gender.php");
 require_once("models/category.php");
@@ -113,7 +114,12 @@ require_once("models/rol.php");
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         OrderController::delete($id);
         break;
+      case 'catalogo_productos':
+        $id = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+        ProductController::getByIdCategoria($id);
+        break;
       case 'mostrar_articulo1':
+        ProductController::get_all_Cliente();
         rutasController::articulo1();
         break;
       case 'mostrar_articulo2':
@@ -129,6 +135,7 @@ require_once("models/rol.php");
         rutasController::carrito();
         break;
       default:
+        ProductController::get_all_Cliente();
         $show = new UserController();
         $show->cliente();
         break;

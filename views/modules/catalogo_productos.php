@@ -1,103 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="catalogo" class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="views/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="views/css/estilos.css">
+    <title>Inicio</title>
+</head>
+
+<body>
+
+    <div class="container">
+    <div id="catalogo" class="container pb-5">
         <div id="imagenes">
             <div class="row">
+                <?php
+                foreach($results as $product){
+                ?>
                 <div class="col-lg-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
+                        <img src="<?php echo $product['imagen'] ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
+                                    <p class="card-text"><?php echo $product['producto'] ?></p>
+                            <div class="row justify-content-between">
+                                <div class="col-4">
+                                    <p class=""><?php echo $product['precio_unitario'] ?></p>
+                                </div>
+                                <div class="col-4">
+                                    <a href="#" class="card-link text-decoration-none">Ver aquí</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..\imagenes\imagen.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Producto</p>
-                            <a href="#" class="card-link">Precio</a>
-                            <a href="#" class="card-link">Ver aquí</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
+    </div>
+
+
+    <script src="views/js/jquery-3.6.0.min.js"></script>
+    <script src="views/js/bootstrap.min.js"></script>
+</body>
+
+</html>

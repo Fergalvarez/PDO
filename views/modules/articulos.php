@@ -11,16 +11,39 @@
 </head>
 
 <body>
-    <?php
-    include('menu_cliente.php');
-    ?>
+    
     <div class="container pb-5">
 
-        <h1>VESTIDOS</h1>
-
-        <?php
-        include('catalogo_productos.php');
-        ?>
+        <h1>BLUSAS</h1>
+        <div id="catalogo" class="container pb-5">
+        <div id="imagenes">
+            <div class="row">
+                <?php
+                foreach($results as $product){
+                ?>
+                <div class="col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="<?php echo $product['imagen'] ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                                    <p class="card-text"><?php echo $product['producto'] ?></p>
+                            <div class="row justify-content-between">
+                                <div class="col-4">
+                                    <p class=""><?php echo $product['precio_unitario'] ?></p>
+                                </div>
+                                <div class="col-4">
+                                    <a href="#" class="card-link text-decoration-none">Ver aquí</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+        
 
     </div>
 

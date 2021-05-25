@@ -120,6 +120,7 @@ class UserController
 
   static function cliente()
   {
-    include "views/modules/cliente.php";
+    
+    // include "views/modules/cliente.php";
   }
 }
