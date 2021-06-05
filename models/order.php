@@ -9,9 +9,10 @@ class Order extends Conexion
     public static function create($datos)
     {
         try {
-            $stmt = Conexion::conectar()->prepare("INSERT INTO compra(id_usuario, id_carrito_compra, id_direccion, id_pago, domicilio, pais, estado, municipio, codigo_postal, referencias, fecha_compra) VALUES(:usuario, :carrito, :direccion, :tpago, :domicilio, :pais, :estado, :municipio, :cpostal, :referencias, :fcompra)");
+
+            $db= Conexion::conectar();
+            $stmt = $db ->prepare("INSERT INTO compra(id_usuario, id_pago, domicilio, pais, estado, municipio, codigo_postal, referencias, total_compra, fecha_compra) VALUES(:usuario, :tpago, :domicilio, :pais, :estado, :municipio, :cpostal, :referencias,:total, :fcompra)");
             $stmt->bindParam(":usuario", $datos["id_usuario"], PDO::PARAM_STR);
-            $stmt->bindParam(":carrito", $datos["id_carrito_compra"], PDO::PARAM_STR);
             $stmt->bindParam(":tpago", $datos["tipo_pago"], PDO::PARAM_STR);
             $stmt->bindParam(":domicilio", $datos["domicilio"], PDO::PARAM_STR);
             $stmt->bindParam(":pais", $datos["pais"], PDO::PARAM_STR);
@@ -19,12 +20,16 @@ class Order extends Conexion
             $stmt->bindParam(":municipio", $datos["municipio"], PDO::PARAM_STR);
             $stmt->bindParam(":cpostal", $datos["codigo_postal"], PDO::PARAM_STR);
             $stmt->bindParam(":referencias", $datos["referencias"], PDO::PARAM_STR);
+            $stmt->bindParam(":total", $datos["total_compra"], PDO::PARAM_STR);
             $stmt->bindParam(":fcompra", $datos["fecha_compra"], PDO::PARAM_STR);
+            $stmt->execute();
+            $lastId = $db->lastInsertId();
+            print_r($lastId);
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
-        return true;
+        return $lastId;
     }
 
     public static function get_all()
@@ -46,21 +51,29 @@ class Order extends Conexion
         return $stmt->fetch();
     }
 
+    public static function get_order($id)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM carrito_detalles WHERE referencia='" . $id . "' limit 1");
+        $stmt->execute();
+        print_r($stmt);
+        return $stmt->fetch();
+    }
+
     public static function update($id, $datos)
     {
         try {
             $stmt = Conexion::conectar()->prepare("UPDATE compra SET id_usuario = :usuario, id_carrito_compra = :carrito, domicilio = :domicilio, pais = :pais, estado = :estado, municipio = :municipio, codigo_postal = :cpostal, referencias = :referencias, id_pago = :tpago, fecha_compra = :fcompra where id_compra = :id ");
             $stmt->bindParam(":id", $id, PDO::PARAM_STR);
-            $stmt->bindParam(":usuario", $datos["domicilio"], PDO::PARAM_STR);
-            $stmt->bindParam(":carrito", $datos["pais"], PDO::PARAM_STR);
-            $stmt->bindParam(":tpago", $datos["municipio"], PDO::PARAM_STR);
+            $stmt->bindParam(":usuario", $datos["id_usuario"], PDO::PARAM_STR);
+            $stmt->bindParam(":carrito", $datos["id_carrito_compra"], PDO::PARAM_STR);
+            $stmt->bindParam(":tpago", $datos["tipo_pago"], PDO::PARAM_STR);
             $stmt->bindParam(":domicilio", $datos["domicilio"], PDO::PARAM_STR);
             $stmt->bindParam(":pais", $datos["pais"], PDO::PARAM_STR);
             $stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
             $stmt->bindParam(":municipio", $datos["municipio"], PDO::PARAM_STR);
             $stmt->bindParam(":cpostal", $datos["codigo_postal"], PDO::PARAM_STR);
             $stmt->bindParam(":referencias", $datos["referencias"], PDO::PARAM_STR);
-            $stmt->bindParam(":fcompra", $datos["codigo_postal"], PDO::PARAM_STR);
+            $stmt->bindParam(":fcompra", $datos["fecha_compra"], PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();

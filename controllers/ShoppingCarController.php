@@ -1,4 +1,5 @@
 <?php
+ob_start();
 class ShoppingCarController
 {
   static function add_shopping_car()
@@ -11,8 +12,10 @@ class ShoppingCarController
       if (!array_key_exists($_GET['id'], $_SESSION['shopping_car'])) {
         $_SESSION['shopping_car'][$_GET['id']] = 1;
       }
-
+      
       header('Location: ' . $_SERVER['HTTP_REFERER']);
+      ob_end_flush();
+      exit;
     }
   }
 
@@ -25,9 +28,23 @@ class ShoppingCarController
         $result = Product::getById($key);
         $total += $result['precio_unitario'];
         array_push($shopping_car, $result);
+
+        print_r($result);
       }
     }
     include "views/modules/mostrar_carrito.php";
+  }
+
+  static function get_shopping_car() {
+    $shopping_car = [];
+    $total = 0;
+    if (isset($_SESSION['shopping_car'])) {
+      foreach ($_SESSION['shopping_car'] as $key => $product) {
+        $result = Product::getById($key);
+        $total += $result['precio_unitario'];
+        array_push($shopping_car, $result);
+      }
+    }
   }
 
   static function delete_shopping_car()

@@ -33,6 +33,9 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+      <a class="nav-link" href=""><span><strong>BIENVENIDO <?php echo $_SESSION['usuario']['nombre'];?></span></strong></a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=log_out"><span>Salir</span></a>
         </li>

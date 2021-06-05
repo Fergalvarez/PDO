@@ -43,16 +43,34 @@ class ProductController
     include "views/modules/cliente.php";
   }
 
-  static function getByIdCategoria($id)
-  {
-    $results = Product::getByIdCategoria($id);
-    include "views/modules/catologo_productos.php";
-  }
-
-  static function get_all_blouses()
+  static function categoria()
   {
     $results = Product::get_all();
-    include "views/modules/cliente.php";
+    include "views/modules/catalogo_articulos.php";
+  }
+
+  static function articulo1()
+  {
+    $results = Product::get_all();
+    include "views/modules/articulos.php";
+  }
+
+  static function articulo2()
+  {
+    $results = Product::get_all();
+    include "views/modules/articulos2.php";
+  }
+
+  static function articulo3()
+  {
+    $results = Product::get_all();
+    include "views/modules/articulos3.php";
+  }
+
+  static function detalle($id)
+  {
+    $result = Product::getById($id);
+    include "views/modules/detalle_producto.php";
   }
 
   static function edit($id)

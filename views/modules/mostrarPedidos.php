@@ -14,7 +14,6 @@
       <th scope="col">CODIGO POSTAL</th>
       <th scope="col">REFERENCIAS</th>
       <th scope="col">FECHA DE PEDIDO</th>
-      <th scope="col">EDITAR</th>
       <th scope="col">ELIMINAR</th>
     </tr>
   </thead>
@@ -32,7 +31,6 @@
         <td><?= $value['codigo_postal'] ?></td>
         <td><?= $value['referencias'] ?></td>
         <td><?= $value['fecha_compra'] ?></td>
-        <td><a class="btn btn-warning" href="?action=editar_pedido&id=<?= $value["id_compra"]?>" role="button">EDITAR</a></td>
         <td><a class="btn btn-danger" href="?action=eliminar_pedido&id=<?= $value["id_compra"]?>" role="button">ELIMINAR</a></td>
       </tr>
     <?php } ?>

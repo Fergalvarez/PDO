@@ -5,6 +5,8 @@ require_once("controllers/ProductController.php");
 require_once("controllers/OrderController.php");
 require_once("controllers/rutasController.php");
 require_once("controllers/ShoppingCarController.php");
+require_once("controllers/GraphicController.php");
+require_once("controllers/SearchController.php");
 require_once("models/user.php");
 require_once("models/gender.php");
 require_once("models/category.php");
@@ -12,6 +14,8 @@ require_once("models/product.php");
 require_once("models/order.php");
 require_once("models/pay.php");
 require_once("models/rol.php");
+require_once("models/graphic.php");
+require_once("models/search.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +26,12 @@ require_once("models/rol.php");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="views/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="views/css/estilos.css">
   <script src="views/js/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+  <script src="https://js.stripe.com/v3/"></script>
   <script src="views/js/bootstrap.min.js"></script>
   <title>Document</title>
 </head>
@@ -96,6 +104,22 @@ require_once("models/rol.php");
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         ProductController::delete($id);
         break;
+      case 'catalogo_articulos':
+        ProductController::categoria();
+        break;
+      case 'mostrar_articulo1':
+        ProductController::articulo1();
+        break;
+      case 'mostrar_articulo2':
+        ProductController::articulo2();
+        break;
+      case 'mostrar_articulo3':
+        ProductController::articulo3();
+        break;
+      case 'ver_producto':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        ProductController::detalle($id);
+        break;
       case 'registrar_pedido':
         OrderController::new();
         break;
@@ -118,19 +142,9 @@ require_once("models/rol.php");
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         OrderController::delete($id);
         break;
-      case 'catalogo_productos':
-        $id = isset($_GET['categoria']) ? $_GET['categoria'] : '';
-        ProductController::getByIdCategoria($id);
-        break;
-      case 'mostrar_articulo1':
-        ProductController::get_all_Cliente();
-        rutasController::articulo1();
-        break;
-      case 'mostrar_articulo2':
-        rutasController::articulo2();
-        break;
-      case 'mostrar_articulo3':
-        rutasController::articulo3();
+      case 'detalle_pedido':
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        OrderController::get_order($id);
         break;
       case 'mostrar_contacto':
         rutasController::contacto();
@@ -143,6 +157,12 @@ require_once("models/rol.php");
         break;
       case 'eliminar_carrito':
         ShoppingCarController::delete_shopping_car();
+        break;
+      case 'mostrar_grafica':
+        GraphicController::new();
+        break;
+      case 'buscar_usuarios':
+        SearchController::new();
         break;
       default:
         ProductController::get_all_Cliente();

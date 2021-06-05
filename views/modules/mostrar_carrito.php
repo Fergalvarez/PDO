@@ -37,7 +37,7 @@
         </table>
         <div class="text-right">
             <td>
-                <a class="nav-link btn btn-danger text-white" href="index.php?action=comprar_carrito">Comprar</a>
+                <a class="nav-link btn btn-danger text-white" href="index.php?action=registrar_pedido">Comprar</a>
             </td>
         </div>
     </div>

@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/estilos.css">
-    <title>Blusas</title>
-</head>
-
-<body>
-    <?php
-    include('menu_cliente.php');
-    ?>
-    <div class="container pb-5">
-
-        <h1>BLUSAS</h1>
-
-
-        <?php
-        include('catalogo_productos.php');
-        ?>
-
-    </div>
-</body>
-
-<footer class="fixed-bottom pt-1">
-    <?php
-    include('footer.php');
-    ?>
-</footer>
-
-</html>
+<div id="catalogo" class="container pb-5">
+     <div id="imagenes">
+         <div class="row">
+             <?php foreach ($results as $product) {
+                 if($product['id_categoria']==3){
+                ?>
+                 <div class="col-lg-4">
+                     <div class="card border border-secondary" style="width: 18rem;">
+                         <img class="card-img-top" src="<?= $product['imagen'] ?>">
+                         <div class="card-body text-center">
+                             <h5 class="card-title"><?= $product['producto'] ?></h5>
+                             <p class="card-text"><?= $product['precio_unitario'] ?></p>
+                             <div class="btn-group" role="group" aria-label="Basic example">
+                                 <a href="index.php?action=ver_producto&id=<?= $product['id_producto'] ?>" class="card-link text-decoration-none btn btn-danger">Ver aquí</a>
+                                 <a href="index.php?action=agregar_carrito&id=<?= $product['id_producto'] ?>" class="card-link text-decoration-none btn btn-success">Agregar carrito</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             <?php }
+             } ?>
+         </div>
+     </div>
+ </div>

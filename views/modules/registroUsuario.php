@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Registro de usuario</h5>
                         <form action="?action=crear_usuario" method="post">
-                            <div class="mb-3 row">
+                            <!--<div class="mb-3 row">
                                 <label for="tipo_usuario" class="col-sm-2 col-form-label">Usuario</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="tipo_usuario" required>
@@ -29,7 +29,7 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="mb-3 row">
                                 <label for="genero" class="col-sm-2 col-form-label">Género</label>
                                 <div class="col-sm-10">

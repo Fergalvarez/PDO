@@ -45,12 +45,6 @@ class Product extends Conexion
         return $stmt->fetch();
     }
 
-    public static function getByIdCategoria($id)
-    {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM producto WHERE id_categoria='" . $id . "' limit 1");
-        $stmt->execute();
-        return $stmt->fetch();
-    }
 
     public static function update($id, $datos)
     {

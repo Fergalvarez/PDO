@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="views/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="views/css/estilos.css">
     <title>Inicio</title>
 </head>
 
@@ -37,7 +35,8 @@
     <div id="catalogo" class="container pb-5">
         <div id="imagenes">
             <div class="row">
-                <?php foreach ($results as $product) { ?>
+                <?php foreach ($results as $product) { 
+                    ?>
                     <div class="col-lg-4">
                         <div class="card border border-secondary" style="width: 18rem;">
                             <img class="card-img-top" src="<?= $product['imagen'] ?>">

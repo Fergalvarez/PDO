@@ -10,9 +10,35 @@ class UserController
 
   static function create()
   {
+    /**$contrasena="";
+    $error= "";
+
+    if(strlen($contrasena) < 6){
+      $error = "La clave debe tener al menos 6 caracteres";
+      return false;
+   }
+   if(strlen($contrasena) > 16){
+      $error = "La clave no puede tener más de 16 caracteres";
+      return false;
+   }
+   if (!preg_match('`[a-z]`',$contrasena)){
+      $error = "La clave debe tener al menos una letra minúscula";
+      return false;
+   }
+   if (!preg_match('`[A-Z]`',$contrasena)){
+      $error  = "La clave debe tener al menos una letra mayúscula";
+      return false;
+   }
+   if (!preg_match('`[0-9]`',$contrasena)){
+      $error = "La clave debe tener al menos un caracter numérico";
+      return false;
+   }
+   $error_clave = "";
+   return true;**/
+
     if (isset($_POST)) {
       $datos = array(
-        "tipo_usuario" => $_POST['tipo_usuario'],
+        "tipo_usuario" => 2,
         "genero" => $_POST['genero'],
         "nombre" => $_POST['nombre'],
         "apellido_paterno" => $_POST['apellido_paterno'],

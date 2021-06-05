@@ -1,0 +1,28 @@
+<?php
+
+require 'vendor/autoload.php';
+\Stripe\Stripe::setApiKey('sk_test_51IvQ5dHs2HTg1BKN13gFXGvETXkIe9O4uIpBUeCsrx6o5k0yUbCxjNzhKToBgQTXJuhrTtw2KYOTwwQCTuMC3ZoS00eNGMw5vk');
+
+header('Content-Type: application/json');
+
+$YOUR_DOMAIN = 'http://localhost:80';
+
+$checkout_session = \Stripe\Checkout\Session::create([
+  'payment_method_types' => ['card'],
+  'line_items' => [[
+    'price_data' => [
+      'currency' => 'usd',
+      'unit_amount' => 2000,
+      'product_data' => [
+        'name' => 'Stubborn Attachments',
+        'images' => ["https://i.imgur.com/EHyR2nP.png"],
+      ],
+    ],
+    'quantity' => 1,
+  ]],
+  'mode' => 'payment',
+  'success_url' => $YOUR_DOMAIN . '/PDO/apis/stripe/success.html',
+  'cancel_url' => $YOUR_DOMAIN . '/PDO/apis/stripe/cancel.html',
+]);
+
+echo json_encode(['id' => $checkout_session->id]);
